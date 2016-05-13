@@ -4,9 +4,18 @@ class PostsController < ApplicationController
   end
 
   def show
-  	@post=Post.find(params:[:id])
+  	@post=Post.find(params[:id])
   end
 
   def new
+  	@post=Post.new
+  end
+  def create
+  	@post=Post.new(post_params)
+  	@post.save
+  	redirect_to @post
+  end
+  def post_params
+  	params.require(:post).permit(:titre,:contenu,:id_post,:id_auteur,:up_vote,:down_vote,:date)
   end
 end

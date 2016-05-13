@@ -1,7 +1,7 @@
 <h1>Posts#index</h1>
 <body> Liste des posts</body>
-	<% @article.each do |a| %>
-	<h1><% a.titre %></h1>
-	<p> <% a.contenu %></p>
+	<% @post.each do |a| %>
+	<h1><%= a.titre %></h1>
+	<p> <%= a.contenu %></p>
 	<% end %>
 <p>Find me in app/views/posts/index.html.erb</p>
