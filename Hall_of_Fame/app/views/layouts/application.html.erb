@@ -2,13 +2,56 @@
 <html>
 <head>
   <title>HallOfFame</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
+<header>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-10">
+				<p> Inserer logo ici </p>
+			</div>
+			<div class="col-md-1">
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-1">
+			<p>accueil</p>
+		</div>
+		<div class="col-md-1">
+			<p>random</p>
+		</div>
+		<div class="col-md-1">
+			<p>random</p>
+		</div>
+		<div class="col-md-1">
+			<p>top</p>
+		</div>
+		<div class="col-md-1">
+			<p>mon profil</p>
+		</div>
+		<div class="col-md-2">
+			<p>Poster</p>
+		</div>
+	</div>
+</div>
+</header>
 <body>
-
-<%= yield %>
-
+	<div class="container-fluid">
+	<div class='row'>
+		<div class="col-md-1"></div>
+		<div class="col-md-8">
+			<%= yield %>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	</div>
 </body>
 </html>

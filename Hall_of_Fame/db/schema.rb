@@ -11,46 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503124109) do
+ActiveRecord::Schema.define(version: 20160514153636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "commentaires", force: :cascade do |t|
-    t.integer  "id_commentaire"
-    t.integer  "id_post"
-    t.integer  "id_auteur"
-    t.datetime "date"
-    t.string   "contenu"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.integer  "id_post"
-    t.integer  "id_auteur"
-    t.integer  "up_vote"
-    t.integer  "down_vote"
-    t.datetime "date"
-    t.string   "image"
-    t.string   "contenu"
-    t.string   "titre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
-    t.integer  "id_user"
-    t.string   "pseudo"
-    t.string   "password"
-    t.integer  "nb_post"
-    t.string   "nom"
-    t.string   "prenom"
-    t.string   "email"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "avatar"
-    t.datetime "date_inscription"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

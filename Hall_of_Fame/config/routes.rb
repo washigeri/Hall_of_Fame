@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-  get 'posts/index'
+  devise_for :users, controllers:{sessions: 'users/sessions'}
+ resources :posts do
+    get :vote
+  end
 
-  get 'posts/show'
-
-  get 'posts/new'
-
-  get 'posts/index'
-
-  get 'posts/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
