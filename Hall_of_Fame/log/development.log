@@ -3956,3 +3956,103 @@ Completed 200 OK in 22ms (Views: 21.5ms | ActiveRecord: 0.0ms)
   [1m[35mUser Load (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = $1  [["email", "washigeri@yahoo.fr"]]
   [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = $1[0m  [["email", "washigeri@yahoo.fr"]]
   [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = $1  [["email", "washigeri@yahoo.fr"]]
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-05-14 18:49:54 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::RegistrationsController#new as HTML
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(sign_up) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:sign_up) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:8)
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(account_update) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:account_update) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:9)
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (42.0ms)
+Completed 200 OK in 350ms (Views: 321.9ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2016-05-14 18:50:12 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2Ry5LLoJHn19DMwfucAL9COGu/yuF+8UTNi5EOQjp7LM+nBNDiAw7RQRd591xeQOMqrPEX7pp8yXH1csRgVzdg==", "user"=>{"email"=>"salut@salut.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x9aa7450 @tempfile=#<Tempfile:C:/Users/Malek/AppData/Local/Temp/RackMultipart20160514-3472-hj6tbb.png>, @original_filename="86874_mai_soi_ong_a_7017a.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"86874_mai_soi_ong_a_7017a.png\"\r\nContent-Type: image/png\r\n">, "avatar_cache"=>""}, "commit"=>"Sign up"}
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(sign_up) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:sign_up) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:8)
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(account_update) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:account_update) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:9)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mUser Exists (2.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'salut@salut.com' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  Rendered devise/shared/_links.html.erb (0.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 319ms (Views: 99.2ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2016-05-14 18:50:23 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/w1uL/etwZBdrlz8t/AXzVMh2cgGM0wKnDjD2m4lR5Dq66dOQ4TvADSz53x79fg3Qg2tJdbNBNJH/y3mzAOTVA==", "user"=>{"email"=>"salut@salut.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x9ca95f0 @tempfile=#<Tempfile:C:/Users/Malek/AppData/Local/Temp/RackMultipart20160514-3472-kht47b.png>, @original_filename="86874_mai_soi_ong_a_7017a.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"86874_mai_soi_ong_a_7017a.png\"\r\nContent-Type: image/png\r\n">, "avatar_cache"=>"1463244612-3472-0001-4631/86874_mai_soi_ong_a_7017a.png"}, "commit"=>"Sign up"}
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(sign_up) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:sign_up) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:8)
+DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(account_update) is deprecated and it will be removed from Devise 4.2.
+Please use the `permit` method:
+
+  devise_parameter_sanitizer.permit(:account_update) do |user|
+    # Your block here.
+  end
+ (called from configure_permitted_parameters at D:/Malek/Documents/Hall_of_Fame/Hall_of_Fame/app/controllers/application_controller.rb:9)
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'salut@salut.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "avatar", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "salut@salut.com"], ["encrypted_password", "$2a$11$03rZaN0NS8eUjwvqffiwleBMXWhldExYQBcMx78Ampn50j2VmWfM2"], ["avatar", "86874_mai_soi_ong_a_7017a.png"], ["created_at", "2016-05-14 16:50:23.270636"], ["updated_at", "2016-05-14 16:50:23.270636"], ["confirmation_token", "2ABcti-gRxVQuqViTsjS"], ["confirmation_sent_at", "2016-05-14 16:50:23.270636"]]
+  [1m[35m (554.5ms)[0m  COMMIT
+  Rendered devise/mailer/confirmation_instructions.html.erb (0.5ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 253.7ms
+
+Sent mail to salut@salut.com (2012.4ms)
+Date: Sat, 14 May 2016 18:50:24 +0200
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: salut@salut.com
+Message-ID: <5737575018667_d902cf076c513f@DESKTOP-BG1J9JH.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome salut@salut.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=2ABcti-gRxVQuqViTsjS">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 3016ms (ActiveRecord: 555.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-05-14 18:50:26 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (0.5ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms)
