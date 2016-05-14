@@ -16,6 +16,6 @@ class PostsController < ApplicationController
   	redirect_to @post
   end
   def post_params
-  	params.require(:post).permit(:titre,:contenu,:id_post,:id_auteur,:up_vote,:down_vote,:date)
+  	params.require(:post).permit(:title,:content,:image)
   end
 end

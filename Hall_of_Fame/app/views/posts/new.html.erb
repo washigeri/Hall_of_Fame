@@ -1,17 +1,18 @@
 <h1>Posts#new</h1>
 <p>Find me in app/views/posts/new.html.erb</p>
-<% @post.down_vote=0 %>
 <%= bootstrap_form_for(@post) do |f| %>
 <div class="container-fluid">
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-8">
-  	<%= f.text_field :titre, label: "Titre" %>
-  	<%= f.text_area :contenu, label:"Description du post" %>
-  	<%= f.text_field :id_post, label: "id_post" %>
-  	<%= f.text_field :id_auteur, label: "id_auteur" %>
-  	<%= f.datetime_select :date, label: "Date" %>
-  	<%= f.submit "Create" %>
+  	<%= f.text_field :title, label: "Titre" %>
+  	<%= f.text_area :content, label:"Description du post" %>
+    <%= f.label :image do %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+        <% end %>
+    <br/>
+  	<%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
 </div>
 </div>
