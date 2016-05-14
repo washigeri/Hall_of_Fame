@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
-	validates :id_user, presence: true
-	validates :pseudo, presence: true
-	validates :password, presence: true
-	validates :nb_posts, presence: true
-	validates :nom, presence: true
-	validates :prenom, presence: true
-	validates :email, presence: true
-	validates :date_inscription, presence: true
-end
+  mount_uploader :avatar, AvatarUploader
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+  validates_presence_of :avatar
+  validates_integrity_of :avatar
+  validates_processing_of :avatar
+  private
+    def avatar_size_validation
+        errors[:avatar] << "Should be less than 500kb" if avatar.size > 0.5.megabytes
+    end
+
+  end
