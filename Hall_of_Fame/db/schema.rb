@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 20160514205916) do
     t.string   "content"
     t.integer  "up_vote"
     t.integer  "down_vote"
-    t.integer  "id_author"
+    t.integer  "user_id"
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["id_author"], name: "index_posts_on_id_author", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
