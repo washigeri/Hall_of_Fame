@@ -1,3 +1,8 @@
-<h1><%= @post.titre %> </h1>
-<p> <%= @post.contenu %> </p>
-<img src="<%= link_to(image_tag(@post.image_url, :alt => "alt text", :class => "anyclass"), @post.image_url) %>" class="img-responsive" alt="Responsive image">
+<div class="center_block">
+  <div class="row">
+
+  <h1><%= @post.title %> </h1>
+  <p> <%= @post.content %> </p>
+  <%= image_tag @post.image_url.to_s %>
+   </div>
+ </div>

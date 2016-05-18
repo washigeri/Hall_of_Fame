@@ -4,8 +4,8 @@ class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   validates_presence_of :title
   validates_presence_of :content
-  validates_numericality_of :down_vote
-  validates_numericality_of :up_vote
+  #validates_numericality_of :down_vote
+  #validates_numericality_of :up_vote
 
   def init_post
     self.up_vote = 0

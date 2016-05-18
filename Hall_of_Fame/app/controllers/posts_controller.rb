@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-  	@post=Post.all
+  	@post=Post.paginate(:page => params[:page])
   end
 
   def show
@@ -15,10 +15,9 @@ class PostsController < ApplicationController
   def create
 
     if current_user
-      @post=Post.new(params[:movie])
-
-      @post.user_id=current_user.id
-  	  @post.save
+      @user = current_user
+      @post = @user.posts.build(post_params)
+      @post.save
       if @post.save
         redirect_to posts_path, notice: 'Post saved successfully!'
       else
