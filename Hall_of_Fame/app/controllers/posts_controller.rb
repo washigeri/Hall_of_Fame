@@ -13,10 +13,20 @@ class PostsController < ApplicationController
   	@post=Post.new
   end
   def create
-  	@post=Post.new(post_params)
-    @post.user=current_user
-  	@post.save
-  	redirect_to @post
+
+    if current_user
+      @post=Post.new(params[:movie])
+
+      @post.user_id=current_user.id
+  	  @post.save
+      if @post.save
+        redirect_to posts_path, notice: 'Post saved successfully!'
+      else
+        redirect_to posts_path, notice: 'oops! Some error occurred!'
+      end
+    else
+      redirect_to new_user_session_path, notice: "Vous n'êtes pas connecté."
+    end
   end
   def post_params
   	params.require(:post).permit(:title, :content, :image, :image_cache)
