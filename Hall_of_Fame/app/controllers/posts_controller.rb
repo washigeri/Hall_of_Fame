@@ -1,6 +1,18 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.vote_by current_user
+    redirect_to @post
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_from current_user
+    redirect_to @post
+  end
+
   def index
   	@post=Post.paginate(:page => params[:page])
   end

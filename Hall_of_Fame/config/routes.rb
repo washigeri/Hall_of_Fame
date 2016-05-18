@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers:{sessions: 'users/sessions'}
- resources :posts
+ resources :posts do
+   member do
+     put "upvote", to: "posts#upvote"
+     put "downvote", to: "posts#downvote"
+   end
+ end
 
   root to: 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.

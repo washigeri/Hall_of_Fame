@@ -1,8 +1,14 @@
 <div class="center_block">
   <div class="row">
 
-  <h1><%= @post.title %> </h1>
+  <h1><%= @post.title %></h1><br>
   <p> <%= @post.content %> </p>
   <%= image_tag @post.image_url.to_s %>
+    <% if signed_in? %>
+      <%= link_to "Vote Up", class: 'vote', method: :put %>
+      <%= link_to "DownVote", class: 'vote', method: :put %>
+        <% else %>
+    <%= link_to "Se connecter pour voter...", new_user_session_path %>
+        <% end %>
    </div>
  </div>
