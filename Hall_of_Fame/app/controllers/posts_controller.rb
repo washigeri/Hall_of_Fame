@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    @post.vote_by current_user
+    @post.vote_by :voter => current_user
     redirect_to @post
   end
 
@@ -14,13 +14,13 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@post=Post.all
+  	@post=Post.paginate(:page => params[:page])
   end
 
   def show
   	@post=Post.find(params[:id])
-    @comments = @post.comments.paginate(:page => params[:page])
-    @titre = @post.nom
+    @new_comment = Comment.build_from(@post, current_user.id, "")
+
   end
 
   def new
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   def random
     @posts=Post.paginate(:page => post_params[:page])
   end
+
 
   private
 

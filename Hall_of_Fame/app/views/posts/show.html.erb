@@ -5,10 +5,12 @@
   <p> <%= @post.content %> </p>
   <%= image_tag @post.image_url.to_s %>
     <% if signed_in? %>
-      <%= link_to "Vote Up", class: 'vote', method: :put %>
-      <%= link_to "DownVote", class: 'vote', method: :put %>
+      <%= link_to "Vote Up", upvote_post_path, class: 'vote', method: :put %>
+      <%= link_to "DownVote", downvote_post_path, class: 'vote', method: :put %>
         <% else %>
     <%= link_to "Se connecter pour voter...", new_user_session_path %>
         <% end %>
    </div>
+  <%= render partial: "comments/template", locals: {commentable: @post, new_comment: @comment} %>
+
  </div>

@@ -6,8 +6,8 @@ Rails.application.routes.draw do
      put "downvote", to: "posts#downvote"
    end
  end
-
-  resources :comments, :only => [:create, :destroy, :edit]
+  resources :comments
+  #resources :comments, :only => [:create, :destroy, :edit]
 
   root to: 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.

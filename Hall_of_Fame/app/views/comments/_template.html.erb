@@ -1,0 +1,11 @@
+<div class="table-wrapper">
+  <h4>
+    <%= commentable.comment_threads.count == 0 ? "no" : commentable.comment_threads.count %> comments
+  </h4>
+</div>
+
+<%= render partial: "comments/form", locals: {new_comment: new_comment} %>
+
+<div class="table-wrapper">
+  <%= render partial: "comments/reply", locals:  {comments: commentable.root_comments} %>
+</div>
