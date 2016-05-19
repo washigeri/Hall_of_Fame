@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20160519160022) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
-    t.integer  "up_vote"
-    t.integer  "down_vote"
     t.integer  "user_id"
     t.string   "image"
     t.datetime "created_at", null: false

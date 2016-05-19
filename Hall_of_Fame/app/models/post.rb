@@ -7,12 +7,5 @@ class Post < ActiveRecord::Base
   acts_as_commentable
   validates_presence_of :title
   validates_presence_of :content
-  #validates_numericality_of :down_vote
-  #validates_numericality_of :up_vote
-
-  def init_post
-    self.up_vote = 0
-    self.down_vote = 0
-  end
 
 end
