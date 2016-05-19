@@ -1,0 +1,12 @@
+<div class="col-md2 col-md-offset-5">
+<h1>Posts#random</h1>
+<h1>Liste de posts random</h1>
+	<% @post.each do |a| %>
+   <div class="row">
+	<h3><%= link_to a.title, post_path(a) %></h3>
+	<p> <%= a.content %></p>
+    <%=image_tag a.image_url.to_s %>
+      </div>
+	<% end %>
+<p>Find me in app/views/posts/random.html.erb</p>
+</div>
