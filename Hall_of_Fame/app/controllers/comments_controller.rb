@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
         make_child_comment
         format.html  { redirect_to(:back, :notice => 'Comment was successfully added.') }
       else
-        format.html  { render :action => "new" }
+        format.html  { redirect_to(:back, :notice => 'Error') }
       end
     end
   end
