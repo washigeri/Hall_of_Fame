@@ -14,11 +14,13 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@post=Post.paginate(:page => params[:page])
+  	@post=Post.all
   end
 
   def show
   	@post=Post.find(params[:id])
+    @comments = @post.comments.paginate(:page => params[:page])
+    @titre = @post.nom
   end
 
   def new
@@ -39,7 +41,14 @@ class PostsController < ApplicationController
       redirect_to new_user_session_path, notice: "Vous n'êtes pas connecté."
     end
   end
+
+  def random
+    @posts=Post.paginate(:page => post_params[:page])
+  end
+
+  private
+
   def post_params
-  	params.require(:post).permit(:title, :content, :image, :image_cache)
+  	params.require(:post).permit(:title,:content,:image)
   end
 end
