@@ -19,8 +19,9 @@ class PostsController < ApplicationController
 
   def show
   	@post=Post.find(params[:id])
-    @new_comment = Comment.build_from(@post, current_user.id, "")
-
+    if signed_in?
+      @new_comment = Comment.build_from(@post, current_user.id, "")
+    end
   end
 
   def new
@@ -31,7 +32,6 @@ class PostsController < ApplicationController
     if current_user
       @user = current_user
       @post = @user.posts.build(post_params)
-      @post.save
       if @post.save
         redirect_to posts_path, notice: 'Post saved successfully!'
       else

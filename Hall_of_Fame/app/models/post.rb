@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-  before_save :init_post
   belongs_to :user
   has_many :comments, :dependent => :destroy
   mount_uploader :image, ImageUploader
