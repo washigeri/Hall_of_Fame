@@ -1,7 +1,8 @@
 Readme Projet Web Hall of Fame
 
 Installation :
-
+	0) Entrer dans le dossier du projet rails avec un terminal 
+	
 	1) Création de la base de données : base de donnée PostgreSQL 'Hall_of_Fame_development' pour le developement, 
 		'Hall_of_Fame_test' pour le test. (voir database.yml pour plus d'infos)
 		utilisateur = 'dev', mdp: 'dev123'
