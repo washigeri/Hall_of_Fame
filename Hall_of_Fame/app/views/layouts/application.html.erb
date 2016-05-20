@@ -9,10 +9,6 @@
   <%= javascript_include_tag :defaults %>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
-  <script>$(".nav a").on("click",function(){
-    $(".nav").find(".active").removeClass("active");
-    $(this).parent().addClass("active");
-  });</script>
 </head>
 <header>
 	<nav class="navbar navbar-default navbar-static-top">
@@ -24,7 +20,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href=<%= root_path.to_s%> >
+        <a class="navbar-brand" href="#" >
           <img alt="Brand" src="logo.png" style="max-width:150px; margin-top: -7px;">
 
         </a>
@@ -51,7 +47,7 @@
             </ul>
           </li>
           <% else %>
-            <a type="button" class="btn btn-primary navbar-btn"><%= link_to "Connexion", new_user_session_path %></a>
+            <a type="button" class="btn btn-primary navbar-btn" href="<%= new_user_session_path.to_s %>">Connexion</a>
           <% end %>
         </ul>
       </div>
