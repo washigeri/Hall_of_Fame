@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def upvote
     @post = Post.find(params[:id])
@@ -24,6 +24,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def top
+    @post = Post.order(:cached_weighted_average).paginate(:page => params[:page])
+  end
+
+
   def new
   	@post=Post.new
   end
@@ -42,6 +47,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if current_user
+      if @post.update(post_params)
+        redirect_to @post
+      else
+        render 'edit'
+      end
+    else
+      redirect_to @post, notice: "Vous n'êtes pas connecté"
+    end
+  end
+
+
   def random
     @post=Post.order("RANDOM()").paginate(:page => params[:page])
 
@@ -51,6 +74,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-  	params.require(:post).permit(:title,:content,:image)
+  	params.require(:post).permit(:title,:content,:image,:image_cache, :remove_image)
   end
 end

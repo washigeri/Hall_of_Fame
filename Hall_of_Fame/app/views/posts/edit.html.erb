@@ -1,0 +1,22 @@
+<h1>Editer Post</h1>
+<%= bootstrap_form_for(@post) do |f| %>
+<div class="container-fluid">
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-8">
+  	<%= f.text_field :title, label: "Titre" %>
+  	<%= f.text_area :content, label:"Description du post" %>
+    <%= f.label :image do %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+        <% end %>
+     <% if @post.image.url.present? %>
+      <img src="<%= @post.image.url.to_s %>" class="img-rounded" style="max-width:900px;max-height:900px;">
+      <%=f.check_box :remove_image, label:"Supprimer l'image" %>
+     <%end%>   
+    <br/>
+  	<%= f.submit "Editer", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+</div>

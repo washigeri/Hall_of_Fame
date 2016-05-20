@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'show_user'
   get '/users/:id/details', to: 'users#show_user_details', as: 'user_details'
   get '/random', to: 'posts#random', as: 'random_posts'
+  get '/top', to: 'posts#top', as: 'top_posts'
  resources :posts do
    member do
      put "upvote", to: "posts#upvote"

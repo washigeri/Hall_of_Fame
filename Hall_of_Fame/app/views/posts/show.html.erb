@@ -1,15 +1,23 @@
-<div class="center_block">
+<div class="center-block">
   <div class="row">
 
   <h1><%= @post.title %></h1><br>
+  <p>Auteur : <%= link_to @post.user.nickname, show_user_path(@post.user) %> </p>
+  <p>Créé le: <%= @post.created_at.to_date %> </p>
   <p> <%= @post.content %> </p>
-  <%= image_tag @post.image_url.to_s %>
+ <img src=" <%= @post.image_url.to_s %>" class="img-rounded" style="max-width: 800px; max-height: 800px;">
+ <div class=panel-body>
     <% if signed_in? %>
       <%= link_to "Vote Up", upvote_post_path, class: 'vote', method: :put %>
       <%= link_to "DownVote", downvote_post_path, class: 'vote', method: :put %>
+      <% if @post.user.id == current_user.id %>
+      <br>
+        <a href="<%= edit_post_path.to_s%>" type="button" class="btn btn-primary navbar-btn"> Editer... </a>
+        <% end %>
         <%= render partial: "comments/template", locals: {commentable: @post, new_comment: @comment} %>
         <% else %>
     <%= link_to "Se connecter pour intéragir...", new_user_session_path %>
         <% end %>
+        </div>
    </div>
    </div>

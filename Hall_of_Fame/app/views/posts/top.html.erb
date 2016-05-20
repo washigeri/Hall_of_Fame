@@ -1,0 +1,26 @@
+
+<h1><strong>Top posts</strong></h1>
+	<% @post.each do |a| %>
+   <div class="panel panel-default">
+     <div class="panel-heading text-center">
+       <img src="<%= a.user.avatar_url.to_s %>" class="img-rounded" style="max-width: 90px; max-height: 90px;float:left;">
+       <h4><strong>    <%= a.user.nickname %></strong></h4>
+       <h3>    <%= link_to a.title, post_path(a) %></h3>
+       </div>
+     <div class="panel-body">
+       <div class="container">
+         <div class="span12">
+           <div class="row">
+             <div class="col-md-6">
+	         <p style="clear:both"> <%= a.content %></p>
+               <div class="col-md-6 col-md-offset-12">
+            <img src="<%=a.image_url.to_s %>" class="img-rounded" style="max-width: 100px; max-height: 150px;">
+                 </div>
+      </div>
+       </div>
+       </div>
+       </div>
+     </div>
+  </div>
+	<% end %>
+<%= will_paginate @post, renderer: BootstrapPagination::Rails %>

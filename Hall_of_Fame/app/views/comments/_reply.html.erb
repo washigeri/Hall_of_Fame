@@ -2,18 +2,30 @@
 <div class="container-fluid">
   <div class="table-wrapper">
   <div class="comment">
-    <p><%= comment.body%></br></p>
-    <div class="comment-nav"><a href="#" class="comment-reply">Répondre</a></div>
+    <div class="panel-default">
+      <div class="panel-heading">
+        <%= link_to comment.user.nickname, show_user_path(comment.user)%>
+        <br>
+        <div class="span3 offset9">
+            Posté il y a : <%= time_ago_in_words(comment.created_at) %>
+        </div>
+      </div>
+      <div class="panel-body">
+        <%= comment.body%></p>
+      
+      <div class="comment-nav"><a href="#" class="comment-reply">Répondre</a></div>
+      </div>
+    </div>
     <div class="reply-form">
       <%= bootstrap_form_for @new_comment do |f|%>
           <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
           <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
           <%= f.hidden_field :comment_id, value: comment.id %>
           <div class="field">
-            <%= f.text_area :body, class: 'form-control' %>
+            <%= f.text_area :body, class: 'form-control', label: "Réponse" %>
           </div>
           <div class="field">
-            <%= submit_tag "Post Reply", class: 'btn btn-primary' %>
+            <%= submit_tag "Répondre", class: 'btn btn-primary' %>
           </div>
           <%end %>
       </div>
