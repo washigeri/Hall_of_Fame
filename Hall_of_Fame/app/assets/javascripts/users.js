@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    activatetab('Posts');
+    activateTab('Posts');
 });
 
 function activateTab(tab){

@@ -43,7 +43,8 @@ class PostsController < ApplicationController
   end
 
   def random
-    @posts=Post.paginate(:page => post_params[:page])
+    @post=Post.paginate(:page => params[:page])
+    render 'index'
   end
 
 
