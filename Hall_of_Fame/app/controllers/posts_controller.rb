@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def random
-    @post=Post.limit(30).order("RANDOM()")
+    @post=Post.order("RANDOM()").paginate(:page => params[:page])
   end
 
 

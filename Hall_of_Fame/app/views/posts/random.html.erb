@@ -8,5 +8,5 @@
     <%=image_tag a.image_url.to_s %>
       </div>
 	<% end %>
-<p>Find me in app/views/posts/random.html.erb</p>
+  <%= will_paginate @post, renderer: BootstrapPagination::Rails %>
 </div>
