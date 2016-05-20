@@ -1,1 +1,51 @@
 Readme Projet Web Hall of Fame
+
+Installation :
+
+	1) Création de la base de données : base de donnée PostgreSQL 'Hall_of_Fame_development' pour le developement, 
+		'Hall_of_Fame_test' pour le test. (voir database.yml pour plus d'infos)
+		utilisateur = 'dev', mdp: 'dev123'
+
+	2) Installer les gems en lancant : "bundle install"
+
+	3) Se rendre dans le dossier contenant le projet, puis lancer la commande : "rake db:create", puis "rake db:migrate".
+
+
+	4) Lancement du serveur : "rails server"
+
+
+Accès à l'application:
+
+	URL : "localhost:3000"
+
+
+Fonctionnalités :
+
+	Possibilité de créer, modifier, supprimer son compte. Celui-ci contient : un email, un nickname, un mot de passe, un avatar. Seul le 		propriétaire du compte peut le modifier ou le supprimer.
+	
+	Des posts, des commentaires (acts_as_commentable) et des votes (acts_as_votable) sont liés à un utilisateur, et ces derniers sont
+	supprimés lors de la suppression du compte de l'utilisateur.
+	
+	Chaque utilisateur peut acceder au profil des autres utilisateurs, mais si il ne s'agit pas de son propre compte, il ne pourra
+	pas acceder aux informations personnelles.
+	
+	L'authentification/enregistrement/connexion/deconnexion/oubli de mot de passe des utilisateurs sont gérés par devise.
+	
+	On peut répondre à un autre commentaire par un commentaire, on peut up_voter/down_voter un post sur l'index et sur la page du post
+	en question.
+	En clickant sur le pseudo de l'auteur d'un post, on a accès aux posts créés par cet utilisateur et aux posts likés/dislikés par cet
+	utilisateur.
+	
+	Les uploads d'images pour les avatars et les images liées aux posts sont gérés par la gem carrier_wave
+	Des images exemples sont disponibles dans le dossier racine du git
+	
+Fonctions non-implémentées
+
+-système d'administration
+-suppresion des commentaire sur un post
+-suppresion d'un post
+		
+
+Barjon Pierre
+El Ouerghi Malek
+Baril Paul

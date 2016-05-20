@@ -4,7 +4,7 @@
     <div class="col-sm-2">
      <% if @user.avatar.present? %>
       <a href="<%= show_user_url(@user).to_s %>" class="pull-right">
-      <img title="Image de profil" class="img-circle img-responsive" src="<%= @user.avatar_url.to_s%>"></a>
+      <img title="Image de profil" class="img-rounded img-responsive" src="<%= @user.avatar_url.to_s%>"></a>
       <%end%>
     </div>
   </div>
@@ -15,9 +15,11 @@
         <li class="list-group-item text-right"><span class="pull-left"><strong>Inscription</strong></span><%=@user.created_at.to_date%></li>
         <li class="list-group-item text-right"><span class="pull-left"><strong>Dernière connexion </strong></span> <%=time_ago_in_words(@user.current_sign_in_at)%></li>
         <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre de posts</strong></span><%=@user.posts.count%></li>
+        <%if signed_in? %>
         <% if current_user.id == @user.id %>
         <li class="list-group-item"><button typ="button" class="btn btn-primary-outline btn-lg btn-block"><%=link_to "Mon Compte", user_details_path%></button></li>
          <%end%>
+            <%end%>
       </ul>
     </div>
     <div class="col-sm-9">

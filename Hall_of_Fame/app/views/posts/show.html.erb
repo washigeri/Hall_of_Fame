@@ -8,8 +8,14 @@
  <img src=" <%= @post.image_url.to_s %>" class="img-rounded" style="max-width: 800px; max-height: 800px;">
  <div class=panel-body>
     <% if signed_in? %>
-      <%= link_to "Vote Up", upvote_post_path, class: 'vote', method: :put %>
-      <%= link_to "DownVote", downvote_post_path, class: 'vote', method: :put %>
+           <button type="button" class="btn btn-default" aria-label="Left Align">
+             <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+             <%= link_to @post.get_likes.size, upvote_post_path(@post), class: 'vote', method: :put %>
+           </button>
+           <button type="button" class="btn btn-default" aria-label="Left Align">
+             <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+             <%=link_to @post.get_dislikes.size, downvote_post_path(@post), class: 'vote', method: :put %>
+           </button>
       <% if @post.user.id == current_user.id %>
       <br>
         <a href="<%= edit_post_path.to_s%>" type="button" class="btn btn-primary navbar-btn"> Editer... </a>

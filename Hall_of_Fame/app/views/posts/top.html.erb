@@ -3,8 +3,8 @@
 	<% @post.each do |a| %>
    <div class="panel panel-default">
      <div class="panel-heading text-center">
-       <img src="<%= a.user.avatar_url.to_s %>" class="img-rounded" style="max-width: 90px; max-height: 90px;float:left;">
-       <h4><strong>    <%= a.user.nickname %></strong></h4>
+       <img src="<%= a.user.avatar_url.to_s %>" class="img-rounded" style="max-width: 60px; max-height: 60px;float:left;">
+       <h5><strong>    <%= link_to a.user.nickname, show_user_path(a.user) %></strong></h5>
        <h3>    <%= link_to a.title, post_path(a) %></h3>
        </div>
      <div class="panel-body">
@@ -16,11 +16,23 @@
                <div class="col-md-6 col-md-offset-12">
             <img src="<%=a.image_url.to_s %>" class="img-rounded" style="max-width: 100px; max-height: 150px;">
                  </div>
+               <br>
+               <small><%=link_to pluralize(a.comment_threads.count,'commentaire'), post_path(a)%></small>
       </div>
        </div>
        </div>
        </div>
      </div>
   </div>
+    <% if signed_in? %>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+          <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+          <%= link_to a.get_likes.size, upvote_post_path(a), class: 'vote', method: :put %>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+          <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+          <%= link_to link_to a.get_dislikes.size, downvote_post_path(a), class: 'vote', method: :put %>
+        </button>
+    <% end %>
 	<% end %>
 <%= will_paginate @post, renderer: BootstrapPagination::Rails %>

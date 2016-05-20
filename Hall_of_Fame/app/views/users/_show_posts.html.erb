@@ -13,7 +13,7 @@
     <tbody id="posts">
     <% posts.each do |p| %>
     <tr>
-    <td><%= truncate(p.title, separator: ' ') %></td>
+    <td><%= link_to truncate(p.title, separator: ' '), post_path(p) %></td>
     <td><%= truncate(p.content, separator: ' ')%></td>
     <td><%= p.get_likes.size %></td>
     <td><%= p.get_dislikes.size %></td>
