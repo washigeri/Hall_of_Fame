@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
   validates_presence_of :avatar
   validates_integrity_of :avatar
   validates_processing_of :avatar

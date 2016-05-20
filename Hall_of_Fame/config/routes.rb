@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers:{sessions: 'users/sessions'}
+
+  get '/users/:id', to: 'users#show', as: 'show_user'
+  get '/users/:id/details', to: 'users#show_user_details', as: 'user_details'
+  get '/random', to: 'posts#random', as: 'random_posts'
  resources :posts do
    member do
      put "upvote", to: "posts#upvote"
@@ -7,9 +11,9 @@ Rails.application.routes.draw do
    end
  end
   resources :comments
-  #resources :comments, :only => [:create, :destroy, :edit]
 
-  get '/random' => 'posts#random'
+  get '/random' => 'posts#random', as: "random_posts"
+
   root to: 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

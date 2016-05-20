@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-10"><h1><%=@user.nickname %></h1></div>
+    <div class="col-sm-2"><a href="<%= show_user_url(@user).to_s %>" class="pull-right"><img title="Image de profil" class="img-circle img-responsive" src="<%= @user.avatar_url.to_s%>"></a></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="list-group">
+        <li class="list-group-item text-muted">Profil</li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Inscription</strong></span><%=@user.created_at.to_date%></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Dernière connexion </strong></span> <%=time_ago_in_words(@user.last_sign_in_at.to_date)%></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre de posts</strong></span><%=@user.posts.count%></li>
+        <% if current_user.id == @user.id %>
+        <li class="list-group-item"><button typ="button" class="btn btn-primary-outline btn-lg btn-block"><%=link_to "Mon Compte", user_details_path%></button></li>
+         <%end%>
+      </ul>
+    </div>
+    <div class="col-sm-9">
+      <ul class="nav nav-pills" id="myTab">
+        <li><a href="#Posts" data-toggle="tab">Posts</a></li>
+        <li ><a href="#up" data-toggle="tab">Up Votes</a></li>
+        <li><a href="#down" data-toggle="tab">Down Votes</a></li>
+      </ul>
+      <div class="tab-content" id="tabs">
+        <div class="tab-pane" id="Posts"> <%= render partial: 'show_posts', locals: {posts: @posts}%></div>
+        <div class="tab-pane" id="up"><%=render partial: 'show_votes', locals: {posts: @user.find_liked_items.paginate(:page => params[:page])}%></div>
+        <div class="tab-pane" id="down"><%=render partial: 'show_votes', locals: {posts: @user.find_disliked_items.paginate(:page => params[:page])}%></div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

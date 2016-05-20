@@ -7,40 +7,43 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag :defaults %>
-  body { padding-top: 40px; }
-  @media screen and (max-width: 768px) {
-  body { padding-top: 0px; }
-  }
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
+  <script>$(".nav a").on("click",function(){
+    $(".nav").find(".active").removeClass("active");
+    $(this).parent().addClass("active");
+  });</script>
 </head>
 <header>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbarCollapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href=<%= root_path.to_s%> >
-          Logo
+          <img alt="Brand" src="logo.png" style="max-width:150px; margin-top: -7px;">
+
         </a>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#"><%=link_to "Index", posts_path%><span class="sr-only">(current)</span></a></li>
-          <li><a href="#"><%=link_to "Random", random_path%>  </a> </li>
+
+      <div class="collapse navbar-collapse navbarCollapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="<%= 'active' if current_page?(posts_path) or current_page?(root_path) %>"><a href="#"><%=link_to "Index", posts_path%></a></li>
+          <li class="<%= 'active' if current_page?(random_posts_path) %>"><a href="#"><%=link_to "Random", random_posts_path%>  </a> </li>
           <li><a href="#"><%=link_to "Top", posts_path%> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if signed_in? %>
+          <button type="button" class="btn btn-secondary btn-lg "><span class="glyphicon glyphicon-send" aria-hidden="true"></span> <%= link_to "Poster", new_post_path %></button>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as <%= current_user.nickname%><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#"><%=link_to "Voir Profil", posts_path %></a></li>
-              <li><a href="#"><%=link_to "Mes Posts",posts_path %> </a></li>
+              <li><a href="#"><%=link_to "Voir Profil", user_details_path(current_user) %></a></li>
+              <li><a href="#"><%=link_to "Mes Posts",show_user_path(current_user) %> </a></li>
               <li><a href="#"><%= link_to "Poster", new_post_path%></a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#"><%= link_to "Deconnexion", destroy_user_session_path, :method => :delete %></a> </li>
@@ -48,7 +51,7 @@
             </ul>
           </li>
           <% else %>
-            <button type="button" class="btn btn_default navbar-btn"><%= link_to "Connexion", new_user_session_path %></button>
+            <a type="button" class="btn btn-primary navbar-btn"><%= link_to "Connexion", new_user_session_path %></a>
           <% end %>
         </ul>
       </div>
@@ -56,14 +59,13 @@
   </nav>
 </header>
 <body>
-	<div class="container-fluid">
-	  <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
+	<div class="container">
+	  <div class="span12">
+
         <%= yield %>
         </div>
-      <div class="col-md-1"></div>
-      </div>
+
+
   </div>
 </body>
 </html>
