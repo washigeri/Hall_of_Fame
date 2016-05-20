@@ -5,8 +5,8 @@
   <p> <%= @post.content %> </p>
   <%= image_tag @post.image_url.to_s %>
     <% if signed_in? %>
-      <%= link_to "Vote Up", upvote_post_path, class: 'vote', method: :put %>
-      <%= link_to "DownVote", downvote_post_path, class: 'vote', method: :put %>
+      <%= link_to "Up vote", upvote_post_path, class: 'vote', method: :put %>
+      <%= link_to "Down vote", downvote_post_path, class: 'vote', method: :put %>
         <%= render partial: "comments/template", locals: {commentable: @post, new_comment: @comment} %>
         <% else %>
     <%= link_to "Se connecter pour intéragir...", new_user_session_path %>

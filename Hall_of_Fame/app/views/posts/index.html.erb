@@ -22,5 +22,15 @@
        </div>
      </div>
   </div>
+  <% if signed_in? %>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+      <%= link_to a.get_likes.size, upvote_post_path(a), class: 'vote', method: :put %>
+  </button>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+      <%= link_to link_to a.get_dislikes.size, downvote_post_path(a), class: 'vote', method: :put %>
+  </button>
+   <% end %>
 	<% end %>
 <%= will_paginate @post, renderer: BootstrapPagination::Rails %>
